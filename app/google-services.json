@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "914044120744",
+    "firebase_url": "https://quiz-e16e8.firebaseio.com",
+    "project_id": "quiz-e16e8",
+    "storage_bucket": "quiz-e16e8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:914044120744:android:353268c7ac00a938",
+        "android_client_info": {
+          "package_name": "com.mekhti.quiz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "914044120744-nss910d7o5rm34vll23g85a9ock6h8gl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEMvcClUZzrnDDoRSJINBJ6qte4QD3AKM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
