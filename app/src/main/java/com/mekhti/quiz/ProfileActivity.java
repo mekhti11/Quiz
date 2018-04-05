@@ -16,6 +16,7 @@ public class ProfileActivity extends AppCompatActivity {
     private TextView email;
     private Button edit;
     private Button beginTest;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +29,7 @@ public class ProfileActivity extends AppCompatActivity {
     private void setData() {
 
         Bundle b = getIntent().getExtras();
-        User user = b.getParcelable("user");
+        user = b.getParcelable("user");
 
         name = findViewById(R.id.user_name);
         username = findViewById(R.id.user_username);
@@ -47,6 +48,24 @@ public class ProfileActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Bundle b = data.getExtras();
+        user = b.getParcelable("edited_user");
+
+        name.setText(user.getName());
+        username.setText(user.getUsername());
+        email.setText(user.getEmail());
+    }
+
     public void edit(View view) {
+
+        Bundle b = new Bundle();
+        b.putParcelable("user",user);
+        Intent i = new Intent(ProfileActivity.this , EditActivity.class);
+        i.putExtras(b);
+        startActivityForResult(i,1);
+
     }
 }

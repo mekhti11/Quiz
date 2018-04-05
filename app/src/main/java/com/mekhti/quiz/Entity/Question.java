@@ -1,8 +1,13 @@
 package com.mekhti.quiz.Entity;
 
+import android.annotation.SuppressLint;
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
-public class Question {
+@SuppressLint("ParcelCreator")
+public class Question implements Parcelable{
 
     private String text;
     private List<String> choices ;
@@ -16,6 +21,24 @@ public class Question {
 
     public Question() {
     }
+
+    protected Question(Parcel in) {
+        text = in.readString();
+        choices = in.createStringArrayList();
+        answer = in.readString();
+    }
+
+    public static final Creator<Question> CREATOR = new Creator<Question>() {
+        @Override
+        public Question createFromParcel(Parcel in) {
+            return new Question(in);
+        }
+
+        @Override
+        public Question[] newArray(int size) {
+            return new Question[size];
+        }
+    };
 
     public String getText() {
         return text;
@@ -39,5 +62,17 @@ public class Question {
 
     public void setAnswer(String answer) {
         this.answer = answer;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(text);
+        dest.writeStringList(choices);
+        dest.writeString(answer);
     }
 }

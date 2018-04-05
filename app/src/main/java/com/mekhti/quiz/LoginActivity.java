@@ -73,9 +73,11 @@ public class LoginActivity extends AppCompatActivity {
                     i.putExtras(b);
                     startActivity(i);
                 }else{
-                    Toast.makeText(this,"Wrong Password . "+u.getAttempt()+" Attempt",LENGTH_LONG).show();
-
                     u.setAttempt(u.getAttempt()+1);
+                    int left = 3 - u.getAttempt();
+                    Toast.makeText(this,"Wrong Password . "+left+" Attempt",LENGTH_LONG).show();
+
+
                 }
             }
         }

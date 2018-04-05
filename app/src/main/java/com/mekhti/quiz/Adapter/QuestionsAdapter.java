@@ -34,6 +34,8 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.Ques
     @Override
     public void onBindViewHolder(@NonNull QuestionViewHolder holder, int position) {
 
+        holder.soru_text.setText(qList.get(position).getText());
+
     }
 
     @Override
@@ -45,9 +47,18 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.Ques
 
         CardView cardView;
         TextView soru_text;
-        public QuestionViewHolder(View itemView) {
+        public QuestionViewHolder(final View itemView) {
             super(itemView);
 
+            cardView = itemView.findViewById(R.id.questions_cv);
+            soru_text = itemView.findViewById(R.id.question_text);
+
+            cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onClick(itemView , getAdapterPosition());
+                }
+            });
         }
     }
 }

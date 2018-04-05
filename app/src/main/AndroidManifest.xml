@@ -22,7 +22,9 @@
         <activity android:name=".ProfileActivity" />
         <activity android:name=".CategoryActivity" />
         <activity android:name=".QuestionsActivity" />
-        <activity android:name=".EditActivity"></activity>
+        <activity android:name=".EditActivity" />
+        <activity android:name=".QuestionWChoices" />
+        <activity android:name=".ResultActivity"></activity>
     </application>
 
 </manifest>

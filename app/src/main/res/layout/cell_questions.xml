@@ -2,19 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
+
+
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="6dp"
-        android:id="@+id/questions_cv">
+        android:padding="8dp"
+        android:id="@+id/questions_cv"
+        app:cardCornerRadius="8dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="monospace"
-            android:textSize="24dp"
+            android:textStyle="bold"
+            android:layout_margin="4dp"
+
+            android:textSize="20dp"
             android:id="@+id/question_text"/>
 
     </android.support.v7.widget.CardView>
