@@ -66,15 +66,12 @@ public class QuestionsActivity extends AppCompatActivity {
                     for(DataSnapshot d : ds2){
                         answers.add(d.getValue().toString());
                     }
-                    Log.d(TAG, "onDataChange: text : " +text);
-                    Log.d(TAG, "onDataChange: answers : " +answers);
-                    Log.d(TAG, "onDataChange: correct : " +correct_answer);
+
                     questionList.add(new Question(text,answers,correct_answer));
 
 
                 }
 
-                Log.d(TAG, "onDataChange: "+questionList);
 
                 adapter = new QuestionsAdapter(questionList, new Listener() {
                     @Override
