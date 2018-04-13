@@ -17,7 +17,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.mekhti.quiz.Adapter.CategoryAdapter;
 import com.mekhti.quiz.Listener.Listener;
-import com.mekhti.quiz.Service.QuestionService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,41 +35,55 @@ public class CategoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
 
-//        final QuestionService qs = new QuestionService();
-//        categories = qs.getCategories();
+        categories = new ArrayList<>();
+        db  = FirebaseDatabase.getInstance().getReference();
 
-        setData();
-
-
-        Log.d(TAG, "onCreate: " + categories.size());
-        rv = findViewById(R.id.recyclerView);
-
-        adapter = new CategoryAdapter(categories, new Listener() {
+        db.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onClick(View view, int position) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Iterable<DataSnapshot> ds = dataSnapshot.getChildren();
+                for(DataSnapshot data : ds){
+                    categories.add(data.getKey());
+                    Log.d(TAG, "onDataChange: "+data.getKey());
 
-                Intent i = new Intent(CategoryActivity.this, QuestionsActivity.class);
-                Bundle b = new Bundle();
-                b.putString("category", categories.get(position));
-                i.putExtras(b);
-                startActivity(i);
+                }
+                Log.d(TAG, "getCategories: "+categories);
+
+                adapter = new CategoryAdapter(categories, new Listener() {
+                    @Override
+                    public void onClick(View view, int position) {
+
+                        Intent i = new Intent(CategoryActivity.this, QuestionsActivity.class);
+                        Bundle b = new Bundle();
+                        b.putString("category", categories.get(position));
+                        i.putExtras(b);
+                        startActivity(i);
+                    }
+                });
+                Log.d(TAG, "onCreate: " + categories.size());
+                rv = findViewById(R.id.recyclerView);
+
+
+
+                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+                rv.setLayoutManager(layoutManager);
+                rv.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
             }
         });
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-        rv.setLayoutManager(layoutManager);
-        rv.setAdapter(adapter);
+
+
 
     }
 
     private void setData() {
 
-        categories = new ArrayList<>();
 
-        categories.add("Mythology");
-        categories.add("Music");
-        categories.add("Film");
-        categories.add("Sport");
     }
 
 
